@@ -1,0 +1,11 @@
+" ============================================================================
+" Netrw Directory Listing                                        (netrw v168)
+"   /Users/delaneyhayes/E222/github/222Repo/__pycache__
+"   Sorted by      name
+"   Sort sequence: [\/]$,\<core\%(\.\d\+\)\=\>,\.h$,\.c$,\.cpp$,\~\=\*$,*,\.o$,\.obj$
+"   Quick Help: <F1>:help  -:go up dir  D:delete  R:rename  s:sort-by  x:special
+" ==============================================================================
+../
+./
+test.cpython-38.pyc
+~

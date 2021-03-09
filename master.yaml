@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  version: 1.0-oas3
+  title: cpuinfo
+  description: >-
+    A simple service to get cpuinfo as an example of using swagger-2.0
+    specification and codegen
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    name: Cloudmesh REST Service Example
+  license:
+    name: Apache
+paths:
+  /mycpu:
+    get:
+      tags:
+        - CPU
+      operationId: os_pack.cpu.get_processor_name
+      description: Returns cpu information of the hosting server
+      responses:
+        '200':
+          description: 'CPU info, or add more text'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CPU'
+  /os:
+    get:
+      tags:
+        - OS
+      operationId: os_pack.cpu_2020.get_os
+      description: Returns cpu information of the hosting server
+      responses:
+        '200':
+          description: 'OS info, or add more text'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CPU'
+servers:
+  - url: 'http://localhost:8080/engr-222'
+components:
+  schemas:
+    CPU:
+      type: object
+      required:
+        - model
+      properties:
+        model:
+          type: string
