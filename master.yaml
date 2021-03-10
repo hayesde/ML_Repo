@@ -27,7 +27,7 @@ paths:
           content:
             application/json:
 	     schema:
-              type: float
+              type: string
 	'405': 
 	  description: user error, invalid input
 
