@@ -53,13 +53,4 @@ paths:
     
 
 servers:
-  - url: 'http://localhost:8080/engr-222'
-components:
-  schemas:
-    CPU:
-      type: object
-      required:
-        - model
-      properties:
-        model:
-          type: string
+  - url: 'http://localhost:8080/fetal_health'
