@@ -13,25 +13,30 @@ info:
 paths:
  
   /predict/<arg1>/<arg2>/<arg3>/<arg4>/<arg5>/<arg6>/<arg7>/<arg8>/<arg9>/<arg10>/<arg11>/
-	<arg12>/<arg13>/<arg14>/<arg15>/<arg16>/<arg17>/<arg18>/<arg19>/<arg20>/<arg21>/:
-    post:
+	<arg12>/<arg13>/<arg14>/<arg15>/<arg16>/<arg17>/<arg18>/<arg19>/<arg20>/<arg21>:
+    get:
       tags:
-        - Upload 
-      operationId: project/prediction.upload
-      description: gets information about fetal patient from user
+        - Predict
+      operationId: project/predict.predict
+      parameters:
+          required: true
+      description: gets information through predict about fetal patient, rus model
       responses:
         '200':
-          description: 'patient information - or verification message'
+          description: 'patient prediction- healthy, suspect, or pathological'
           content:
             application/json:
-              schema:
-                type: float
+	     schema:
+              type: float
 	'405': 
 	  description: user error, invalid input
+
+  /download/<arg1>/<arg2>/<arg3>/<arg4>/<arg5>/<arg6>/<arg7>/<arg8>/<arg9>/<arg10>/<arg11>/
+        <arg12>/<arg13>/<arg14>/<arg15>/<arg16>/<arg17>/<arg18>/<arg19>/<arg20>/<arg21>:
     get:
       tags:
         - Download
-      operationId: project/prediction.download
+      operationId: project/download.download
       description: allows user to download decision tree with highlighted path for individual path
       responses:
         '200':
@@ -45,6 +50,7 @@ paths:
 		   type: png
 	'405':
 	  description: user error, invalid input
+    
 
 servers:
   - url: 'http://localhost:8080/engr-222'
