@@ -1,26 +1,27 @@
 openapi: 3.0.0
 info:
   version: 1.0-oas3
-  title: cpuinfo
+  title: Fetal Health Classification
   description: >-
-    A simple service to get cpuinfo as an example of using swagger-2.0
-    specification and codegen
+    Predicts whether or not a fetal patient is healthy or not.
   termsOfService: 'http://swagger.io/terms/'
   contact:
-    name: Cloudmesh REST Service Example
+    name: Delaney Hayes
+    email: hayesde@iu.edu
   license:
     name: Apache
 paths:
  
-  /predict/<arg1>/<arg2>/<arg3>/<arg4>/<arg5>/<arg6>/<arg7>/<arg8>/<arg9>/<arg10>/<arg11>/
-	<arg12>/<arg13>/<arg14>/<arg15>/<arg16>/<arg17>/<arg18>/<arg19>/<arg20>/<arg21>:
+  /predict/{patient_id}
     get:
       tags:
         - Predict
       operationId: project/predict.predict
       parameters:
           required: true
-      description: gets information through predict about fetal patient, rus model
+	  schema:
+	    type: array
+      description: gets information through predict about fetal patient, runs model
       responses:
         '200':
           description: 'patient prediction- healthy, suspect, or pathological'
@@ -31,12 +32,14 @@ paths:
 	'405': 
 	  description: user error, invalid input
 
-  /download/<arg1>/<arg2>/<arg3>/<arg4>/<arg5>/<arg6>/<arg7>/<arg8>/<arg9>/<arg10>/<arg11>/
-        <arg12>/<arg13>/<arg14>/<arg15>/<arg16>/<arg17>/<arg18>/<arg19>/<arg20>/<arg21>:
+  /download/{patient_id}        
     get:
       tags:
         - Download
       operationId: project/download.download
+      parameters:
+          schema:
+            type: array
       description: allows user to download decision tree with highlighted path for individual path
       responses:
         '200':
@@ -54,3 +57,4 @@ paths:
 
 servers:
   - url: 'http://localhost:8080/fetal_health'
+#possibly url for google colab notebook
