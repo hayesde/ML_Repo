@@ -8,12 +8,12 @@ docker-all: docker-build docker-start
 
 docker-build:
 	@echo "building the image from docker file..."
-	docker build  --pull -t tbalson/cpu .
+	docker build  --pull -t 222 .
 	@echo "image DONE"
 
 docker-start:
 	@echo "starting the NEW service in container..."
-	docker run  -p 8080:8080 tbalson/cpu
+	docker run  -p 8080:8080 222
 
 service:	
 	@echo "creating the service..."

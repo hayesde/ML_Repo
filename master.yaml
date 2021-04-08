@@ -9,52 +9,78 @@ info:
     name: Delaney Hayes
     email: hayesde@iu.edu
   license:
-    name: Apache
-paths:
- 
-  /predict/{patient_id}
-    get:
-      tags:
-        - Predict
-      operationId: project/predict.predict
-      parameters:
-          required: true
-	  schema:
-	    type: array
-      description: gets information through predict about fetal patient, runs model
-      responses:
-        '200':
-          description: 'patient prediction- healthy, suspect, or pathological'
-          content:
-            application/json:
-	     schema:
-              type: string
-	'405': 
-	  description: user error, invalid input
+    name: "Apache"
 
-  /download/{patient_id}        
+paths: 
+  /predict/{patient_id}:
     get:
       tags:
-        - Download
-      operationId: project/download.download
+        - PREDICT
+      operationId: predict.prediction
+      description: gets information through predict about fetal patient, runs model
       parameters:
+        - in: path
+          name: patient_id
+          required: true
           schema:
             type: array
-      description: allows user to download decision tree with highlighted path for individual path
-      responses:
+            items:
+              type: number
+            minItems: 1
+          style: simple
+          explode: true
+        - in: query
+          name: metadata
+          schema:
+            type: boolean
+      responses: 
         '200':
-          description: 'png file with decision tree'
-          content:
-            application/json:
-              schema:
-                type: object
-		properties:
-		 file:
-		   type: png
-	'405':
-	  description: user error, invalid input
-    
+          description: 'patient prediction- healthy, suspect, or pathological'
+        '405': 
+          description: 'user error, invalid input'
+                 
+  #/download/{patient_id}:
+    #get:
+      #tags:
+       #- DOWNLOAD
+      #operationId: predict.prediction
+      #parameters:
+        #- in: path
+          #name: patient_id
+          #required: true
+          #schema:
+            #type: array
+            #items:
+              #type: number
+            #minItems: 1
+          #style: simple
+          #explode: true
+        #- in: query
+          #name: metadata
+          #schema:
+            #type: boolean
+      #responses:
+        #'200':
+          #description: 'png file with decision tree'
+        #'405':
+          #description: 'user error, invalid input'
+
 
 servers:
   - url: 'http://localhost:8080/fetal_health'
-#possibly url for google colab notebook
+components:
+  schemas:
+    PREDICT:
+      type: array
+      required:
+        - model
+      properties:
+        model:
+          type: string
+    #DOWNLOAD:
+      #type: array
+      #required:
+      # - model
+      #properties:
+         #model: 
+           #type: object
