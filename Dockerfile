@@ -36,5 +36,6 @@ COPY . /cpu_test
 EXPOSE 8080
 
 RUN pip install -r requirements.txt
+RUN apt-get install -y graphviz
 
-#CMD ["make", "start"]
+CMD ["make", "start"]

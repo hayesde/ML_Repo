@@ -39,31 +39,31 @@ paths:
         '405': 
           description: 'user error, invalid input'
                  
-  #/download/{patient_id}:
-    #get:
-      #tags:
-       #- DOWNLOAD
-      #operationId: predict.prediction
-      #parameters:
-        #- in: path
-          #name: patient_id
-          #required: true
-          #schema:
-            #type: array
-            #items:
-              #type: number
-            #minItems: 1
-          #style: simple
-          #explode: true
-        #- in: query
-          #name: metadata
-          #schema:
-            #type: boolean
-      #responses:
-        #'200':
-          #description: 'png file with decision tree'
-        #'405':
-          #description: 'user error, invalid input'
+  /download/{patient_id}:
+    get:
+      tags:
+       - DOWNLOAD
+      operationId: download.download
+      parameters:
+        - in: path
+          name: patient_id
+          required: true
+          schema:
+            type: array
+            items:
+              type: number
+            minItems: 1
+          style: simple
+          explode: true
+        - in: query
+          name: metadata
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: 'png file with decision tree'
+        '405':
+          description: 'user error, invalid input'
 
 
 servers:
@@ -77,10 +77,10 @@ components:
       properties:
         model:
           type: string
-    #DOWNLOAD:
-      #type: array
-      #required:
-      # - model
-      #properties:
-         #model: 
-           #type: object
+    DOWNLOAD:
+      type: array
+      required:
+       - model
+      properties:
+         model: 
+           type: object
